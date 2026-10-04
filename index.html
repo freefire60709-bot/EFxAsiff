@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EFX ASIF</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    background:#020711;
+    color:#fff;
+    font-family:"Orbitron",sans-serif;
+}
+
+/* ================= BACKGROUND ================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-5;
+
+    background:
+    radial-gradient(circle at 15% 25%,rgba(0,255,255,.14),transparent 28%),
+    radial-gradient(circle at 85% 35%,rgba(40,50,255,.15),transparent 30%),
+    radial-gradient(circle at 50% 90%,rgba(0,255,255,.08),transparent 35%),
+    #020711;
+
+    animation:bgPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes bgPulse{
+    from{filter:hue-rotate(0deg)}
+    to{filter:hue-rotate(15deg)}
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-4;
+    opacity:.20;
+
+    background-image:
+    linear-gradient(rgba(0,255,255,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,180,255,.07) 1px,transparent 1px);
+
+    background-size:45px 45px;
+
+    transform:
+    perspective(500px)
+    rotateX(55deg)
+    scale(2);
+
+    transform-origin:center bottom;
+
+    animation:gridMove 12s linear infinite;
+}
+
+@keyframes gridMove{
+    to{
+        background-position:0 45px,45px 0;
+    }
+}
+
+/* ================= PARTICLES ================= */
+
+.particles{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+.particle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:#00ffff;
+
+    box-shadow:
+    0 0 8px #00ffff,
+    0 0 18px #00ffff;
+
+    animation:particleFloat 10s linear infinite;
+}
+
+.particle:nth-child(1){left:8%;top:80%}
+.particle:nth-child(2){left:18%;top:60%;animation-delay:2s}
+.particle:nth-child(3){left:30%;top:90%;animation-delay:4s}
+.particle:nth-child(4){left:43%;top:70%;animation-delay:1s}
+.particle:nth-child(5){left:55%;top:85%;animation-delay:3s}
+.particle:nth-child(6){left:67%;top:65%;animation-delay:5s}
+.particle:nth-child(7){left:78%;top:75%;animation-delay:2.5s}
+.particle:nth-child(8){left:90%;top:90%;animation-delay:6s}
+
+@keyframes particleFloat{
+    0%{
+        transform:translateY(100px) scale(.4);
+        opacity:0;
+    }
+    20%{opacity:1}
+    70%{opacity:.8}
+    100%{
+        transform:translateY(-700px) scale(1.4);
+        opacity:0;
+    }
+}
+
+/* ================= MAIN ================= */
+
+.container{
+    width:min(92%,700px);
+    margin:auto;
+    padding:48px 0 90px;
+    text-align:center;
+
+    animation:pageIn 1s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.98);
+        filter:blur(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+        filter:blur(0);
+    }
+}
+
+/* ================= PROFILE ================= */
+
+.profile-area{
+    position:relative;
+    width:180px;
+    height:180px;
+    margin:10px auto 28px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    animation:profileFloat 4s ease-in-out infinite;
+}
+
+@keyframes profileFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-8px)}
+}
+
+.profile-ring{
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+
+    border:2px solid transparent;
+    border-top-color:#00ffff;
+    border-right-color:#008cff;
+
+    box-shadow:
+    0 0 12px #00ffff,
+    0 0 30px #008cff;
+
+    animation:ringSpin 4s linear infinite;
+}
+
+@keyframes ringSpin{
+    to{transform:rotate(360deg)}
+}
+
+.profile-pic{
+    width:145px;
+    height:145px;
+
+    border-radius:50%;
+    object-fit:cover;
+
+    position:relative;
+    z-index:2;
+
+    border:3px solid rgba(255,255,255,.15);
+
+    box-shadow:
+    0 0 12px #00ffff,
+    0 0 30px #00ffff,
+    0 0 55px #0077ff;
+}
+
+/* ================= NAME ================= */
+
+.name-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    margin-bottom:9px;
+}
+
+.name{
+    font-size:clamp(28px,7vw,48px);
+    font-weight:900;
+    letter-spacing:3px;
+    line-height:1;
+
+    color:#fff;
+
+    text-shadow:
+    0 0 7px #fff,
+    0 0 18px #00ffff,
+    0 0 40px #008cff;
+
+    animation:nameGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes nameGlow{
+    from{
+        text-shadow:
+        0 0 5px #fff,
+        0 0 12px #00ffff;
+    }
+
+    to{
+        text-shadow:
+        0 0 8px #fff,
+        0 0 22px #00ffff,
+        0 0 42px #008cff;
+    }
+}
+
+/* ================= VERIFIED BADGE ================= */
+
+.main-verified{
+    width:25px;
+    height:25px;
+    flex:0 0 25px;
+
+    filter:
+    drop-shadow(0 0 4px #238fff)
+    drop-shadow(0 0 10px rgba(35,143,255,.65));
+
+    animation:verifiedGlow 2.2s ease-in-out infinite;
+}
+
+@keyframes verifiedGlow{
+    0%,100%{
+        transform:scale(1);
+
+        filter:
+        drop-shadow(0 0 3px #238fff)
+        drop-shadow(0 0 7px rgba(35,143,255,.5));
+    }
+
+    50%{
+        transform:scale(1.08);
+
+        filter:
+        drop-shadow(0 0 6px #238fff)
+        drop-shadow(0 0 14px rgba(35,143,255,.85));
+    }
+}
+
+.username{
+    color:#00ffff;
+    font-size:14px;
+    letter-spacing:2px;
+    margin-bottom:25px;
+}
+
+/* ================= STATUS ================= */
+
+.status{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:8px 15px;
+    margin-bottom:25px;
+
+    border:1px solid rgba(0,255,255,.35);
+    border-radius:30px;
+
+    background:rgba(0,255,255,.05);
+}
+
+.status-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+
+    background:#00ff66;
+
+    box-shadow:
+    0 0 7px #00ff66,
+    0 0 15px #00ff66;
+
+    animation:statusBlink 1.2s infinite;
+}
+
+@keyframes statusBlink{
+    50%{
+        opacity:.35;
+        transform:scale(.65);
+    }
+}
+
+/* ================= SOCIAL ================= */
+
+.socials{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+    margin-top:15px;
+}
+
+.social-btn{
+    position:relative;
+
+    min-height:90px;
+    padding:15px 25px;
+
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+    text-decoration:none;
+    color:#fff;
+
+    border:1px solid rgba(255,255,255,.13);
+    border-radius:20px;
+
+    background:rgba(255,255,255,.035);
+
+    backdrop-filter:blur(14px);
+
+    transition:
+    transform .4s ease,
+    border-color .4s ease,
+    box-shadow .4s ease;
+}
+
+.social-btn:hover{
+    transform:translateY(-6px) scale(1.015);
+}
+
+.social-btn>i:first-child{
+    width:38px;
+    text-align:center;
+    font-size:28px;
+
+    transition:transform .4s ease;
+}
+
+.social-btn:hover>i:first-child{
+    transform:scale(1.18) rotate(-5deg);
+}
+
+.social-name{
+    font-size:15px;
+    letter-spacing:1px;
+    font-weight:700;
+}
+
+.external{
+    margin-left:auto;
+    font-size:13px!important;
+    opacity:.45;
+    width:auto!important;
+}
+
+/* ================= BRAND NEON ================= */
+
+#youtube>i:first-child{
+    color:#ff0033;
+
+    filter:
+    drop-shadow(0 0 5px #ff0033)
+    drop-shadow(0 0 13px #ff0033);
+}
+
+#youtube:hover{
+    border-color:#ff0033;
+    box-shadow:0 0 25px rgba(255,0,51,.45);
+}
+
+#tiktok>i:first-child{
+    color:#25f4ee;
+
+    filter:
+    drop-shadow(3px 0 4px #ff0050)
+    drop-shadow(-3px 0 8px #25f4ee);
+}
+
+#tiktok:hover{
+    border-color:#25f4ee;
+    box-shadow:0 0 25px rgba(37,244,238,.4);
+}
+
+#facebook>i:first-child{
+    color:#1877f2;
+    filter:drop-shadow(0 0 7px #1877f2);
+}
+
+#facebook:hover{
+    border-color:#1877f2;
+    box-shadow:0 0 25px rgba(24,119,242,.45);
+}
+
+#instagram>i:first-child{
+    color:#ff2d95;
+
+    filter:
+    drop-shadow(0 0 6px #ff2d95)
+    drop-shadow(0 0 13px #ff7a00);
+}
+
+#instagram:hover{
+    border-color:#ff2d95;
+    box-shadow:0 0 25px rgba(255,45,149,.45);
+}
+
+#whatsapp>i:first-child{
+    color:#25d366;
+    filter:drop-shadow(0 0 7px #25d366);
+}
+
+#whatsapp:hover{
+    border-color:#25d366;
+    box-shadow:0 0 25px rgba(37,211,102,.45);
+}
+
+#discord>i:first-child{
+    color:#5865f2;
+    filter:drop-shadow(0 0 7px #5865f2);
+}
+
+#discord:hover{
+    border-color:#5865f2;
+    box-shadow:0 0 25px rgba(88,101,242,.45);
+}
+
+#telegram>i:first-child{
+    color:#229ed9;
+
+    filter:
+    drop-shadow(0 0 6px #229ed9)
+    drop-shadow(0 0 13px #00bfff);
+}
+
+#telegram:hover{
+    border-color:#229ed9;
+    box-shadow:0 0 25px rgba(34,158,217,.5);
+}
+
+#twitter>i:first-child,
+#threads>i:first-child{
+    color:#fff;
+    filter:drop-shadow(0 0 6px #fff);
+}
+
+/* ================= MUSIC ================= */
+
+.music-btn{
+    position:fixed;
+
+    right:20px;
+    bottom:20px;
+
+    width:55px;
+    height:55px;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(0,255,255,.5);
+    border-radius:50%;
+
+    background:rgba(0,15,30,.8);
+
+    color:#00ffff;
+    font-size:20px;
+
+    cursor:pointer;
+    z-index:100;
+
+    box-shadow:
+    0 0 15px rgba(0,255,255,.3);
+
+    transition:.3s ease;
+}
+
+.music-btn:hover{
+    transform:scale(1.08);
+}
+
+.music-btn.playing{
+    animation:musicPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes musicPulse{
+    50%{
+        box-shadow:
+        0 0 30px rgba(0,255,255,.8);
+    }
+}
+
+/* =====================================================
+   WELCOME POPUP
+===================================================== */
+
+.community-overlay{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(0,6,15,.88);
+
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+
+    transition:
+    opacity .5s ease,
+    visibility .5s ease;
+}
+
+.community-overlay.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.community-card{
+    position:relative;
+
+    width:min(100%,395px);
+
+    padding:30px 22px 23px;
+
+    text-align:center;
+
+    border:2px solid #00d9ff;
+    border-radius:27px;
+
+    background:
+    radial-gradient(
+        circle at 20% 100%,
+        rgba(0,255,255,.18),
+        transparent 40%
+    ),
+    linear-gradient(
+        145deg,
+        #07101f,
+        #030b18 70%
+    );
+
+    box-shadow:
+    0 0 12px #00d9ff,
+    0 0 35px rgba(0,217,255,.35),
+    0 0 80px rgba(0,80,255,.18),
+    inset 0 0 35px rgba(0,217,255,.06);
+
+    animation:popupIn .75s cubic-bezier(.16,1,.3,1);
+
+    overflow:hidden;
+}
+
+@keyframes popupIn{
+    from{
+        opacity:0;
+        transform:translateY(35px) scale(.88);
+        filter:blur(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+        filter:blur(0);
+    }
+}
+
+/* ================= POPUP CLOSE ================= */
+
+.community-close{
+    position:absolute;
+
+    top:17px;
+    right:17px;
+
+    width:34px;
+    height:34px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:none;
+    background:transparent;
+
+    color:#8996a8;
+    font-size:22px;
+
+    cursor:pointer;
+    z-index:10;
+
+    transition:.3s ease;
+}
+
+.community-close:hover{
+    color:#fff;
+    transform:rotate(90deg) scale(1.1);
+}
+
+/* =====================================================
+   WELCOME PHOTO
+===================================================== */
+
+.community-profile{
+    width:82px;
+    height:82px;
+
+    margin:5px auto 18px;
+
+    position:relative;
+    z-index:2;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+}
+
+.community-profile::before{
+    content:"";
+
+    position:absolute;
+    inset:-6px;
+
+    border-radius:50%;
+
+    border:2px solid #00dfff;
+
+    box-shadow:
+    0 0 8px #00dfff,
+    0 0 20px #00aaff,
+    0 0 38px rgba(0,217,255,.45);
+
+    animation:popupRing 3s linear infinite;
+}
+
+.community-profile::after{
+    content:"";
+
+    position:absolute;
+    inset:-11px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(0,255,255,.25);
+
+    animation:popupOuterRing 4s linear infinite reverse;
+}
+
+.community-profile img{
+    width:82px;
+    height:82px;
+
+    display:block;
+
+    border-radius:50%;
+
+    object-fit:cover;
+    object-position:center;
+
+    border:2px solid #071525;
+
+    background:#06101e;
+
+    image-rendering:auto;
+
+    box-shadow:
+    0 0 5px #00dfff,
+    0 0 15px rgba(0,217,255,.7);
+
+    position:relative;
+    z-index:2;
+
+    animation:photoSmooth 3s ease-in-out infinite;
+}
+
+@keyframes photoSmooth{
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.025);
+    }
+}
+
+@keyframes popupRing{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes popupOuterRing{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* ================= POPUP NAME ================= */
+
+.popup-name{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+
+    margin:0 0 20px;
+
+    color:#fff;
+
+    font-size:clamp(22px,6vw,28px);
+    font-weight:900;
+
+    line-height:1.2;
+    letter-spacing:1px;
+
+    text-shadow:
+    0 0 7px #fff,
+    0 0 15px #00ffff,
+    0 0 30px #008cff;
+}
+
+.popup-verified{
+    width:21px;
+    height:21px;
+    flex:0 0 21px;
+
+    filter:
+    drop-shadow(0 0 4px #238fff)
+    drop-shadow(0 0 9px rgba(35,143,255,.7));
+
+    animation:verifiedGlow 2.2s ease-in-out infinite;
+}
+
+/* ================= POPUP TEXT ================= */
+
+.community-text{
+    color:#d6dce5;
+
+    font-family:Arial,sans-serif;
+    font-size:14px;
+    line-height:1.55;
+
+    margin-bottom:10px;
+}
+
+.community-bangla{
+    color:#8794a5;
+
+    font-family:Arial,sans-serif;
+    font-size:13px;
+    line-height:1.55;
+
+    margin-bottom:20px;
+}
+
+/* ================= POPUP BUTTONS ================= */
+
+.community-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.community-btn{
+    min-height:57px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    color:#fff;
+    text-decoration:none;
+
+    border:1px solid rgba(0,255,255,.18);
+
+    background:rgba(0,255,255,.04);
+
+    border-radius:12px;
+
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.5px;
+
+    transition:.4s ease;
+}
+
+.community-btn i{
+    font-size:18px;
+}
+
+.community-btn.telegram{
+    color:#27bfff;
+    text-shadow:0 0 8px rgba(39,191,255,.6);
+}
+
+.community-btn.youtube{
+    color:#ff3152;
+    text-shadow:0 0 8px rgba(255,49,82,.6);
+}
+
+.community-btn:hover{
+    transform:translateY(-4px) scale(1.02);
+
+    border-color:#00eaff;
+
+    box-shadow:
+    0 0 18px rgba(0,234,255,.3);
+}
+
+/* ================= CONTINUE ================= */
+
+.continue-btn{
+    width:100%;
+    margin-top:13px;
+
+    min-height:50px;
+
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:12px;
+
+    background:rgba(255,255,255,.035);
+
+    color:#8d9aaa;
+
+    font-family:"Orbitron",sans-serif;
+
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    transition:.4s ease;
+}
+
+.continue-btn:hover{
+    color:#00ffff;
+
+    border-color:rgba(0,255,255,.45);
+
+    background:rgba(0,255,255,.05);
+
+    box-shadow:
+    0 0 18px rgba(0,255,255,.15);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+    .container{
+        width:calc(100% - 28px);
+        padding-top:35px;
+    }
+
+    .profile-area{
+        width:155px;
+        height:155px;
+    }
+
+    .profile-ring{
+        width:155px;
+        height:155px;
+    }
+
+    .profile-pic{
+        width:125px;
+        height:125px;
+    }
+
+    .name{
+        font-size:27px;
+        letter-spacing:2px;
+    }
+
+    .main-verified{
+        width:22px;
+        height:22px;
+        flex-basis:22px;
+    }
+
+    .social-btn{
+        min-height:90px;
+    }
+
+    .community-card{
+        padding:27px 17px 19px;
+        border-radius:23px;
+    }
+
+    .popup-name{
+        font-size:23px;
+    }
+
+    .community-text{
+        font-size:13px;
+    }
+
+    .community-bangla{
+        font-size:12px;
+    }
+}
+
+@media(max-width:370px){
+
+    .name{
+        font-size:24px;
+    }
+
+    .main-verified{
+        width:20px;
+        height:20px;
+        flex-basis:20px;
+    }
+
+    .community-actions{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PARTICLES -->
+
+<div class="particles">
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+</div>
+
+
+<!-- ================= MAIN WEBSITE ================= -->
+
+<main class="container">
+
+    <div class="profile-area">
+
+        <div class="profile-ring"></div>
+
+        <img
+            id="profilePic"
+            class="profile-pic"
+            src="https://files.catbox.moe/pcjr2u.jpg"
+            alt="EFX ASIF"
+        >
+
+    </div>
+
+
+    <!-- NAME + VERIFIED -->
+
+    <div class="name-row">
+
+        <h1 class="name" id="fullname">
+            EFX ASIF
+        </h1>
+
+        <svg
+            class="main-verified"
+            viewBox="0 0 64 64"
+            aria-label="Verified"
+        >
+            <path
+                fill="#3897e8"
+                d="M32 1L39 6L47 5L52 12L60 16L58 25L63 32L58 39L60 48L52 52L47 59L39 58L32 63L25 58L17 59L12 52L4 48L6 39L1 32L6 25L4 16L12 12L17 5L25 6Z"
+            />
+
+            <path
+                d="M17 32L27 42L48 20"
+                fill="none"
+                stroke="#fff"
+                stroke-width="7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+        </svg>
+
+    </div>
+
+
+    <div
+        class="username"
+        id="username"
+    >
+        @efxasif
+    </div>
+
+
+    <div class="status">
+
+        <span class="status-dot"></span>
+
+        <span>ONLINE</span>
+
+    </div>
+
+
+    <!-- ================= SOCIAL LINKS ================= -->
+
+    <div class="socials">
+
+        <a
+            id="youtube"
+            class="social-btn"
+            href="#"
+        >
+            <i class="fa-brands fa-youtube"></i>
+
+            <span class="social-name">
+                YOUTUBE
+            </span>
+
+            <i class="fa-solid fa-arrow-up-right-from-square external"></i>
+        </a>
+
+
+        <a
+            id="tiktok"
+            class="social-btn"
+            href="#"
+        >
+            <i class="fa-brands fa-tiktok"></i>
+
+            <span class="social-name">
+                TIKTOK
+            </span>
+
+            <i class="fa-solid fa-arrow-up-right-from-square external"></i>
+        </a>
+
+
+        <a
+            id="facebook"
+            class="social-btn"
+            href="#"
+        >
+            <i class="fa-brands fa-facebook-f"></i>
+
+            <span class="social-name">
+                FACEBOOK
+            </span>
+
+            <i class="fa-solid fa-arrow-up-right-from-square external"></i>
+        </a>
+
+
+        <a
+            id="instagram"
+            class="social-btn"
+            href="#"
+        >
+            <i class="fa-brands fa-instagram"></i>
+
+            <span class="social-name">
+                INSTAGRAM
+            </span>
+
+            <i class="fa-solid fa-arrow-up-right-from-square external"></i>
+        </a>
+
+
+        <a
+            id="whatsapp"
+            class="social-btn"
+            href="#"
+        >
+            <i class="fa-brands fa-whatsapp"></i>
+
+            <span class="social-name">
+                WHATSAPP
+            </span>
+
+            <i class="fa-solid fa-arrow-up-right-from-square external"></i>
+        </a>
+
+
+        <a
+            id="discord"
+            class="social-btn"
+            href="#"
+        >
+            <i class="fa-brands fa-discord"></i>
+
+            <span class="social-name">
+                DISCORD
+            </span>
+
+            <i class="fa-solid fa-arrow-up-right-from-square external"></i>
+        </a>
+
+
+        <a
+            id="telegram"
+            class="social-btn"
+            href="#"
+        >
+            <i class="fa-brands fa-telegram"></i>
+
+            <span class="social-name">
+                TELEGRAM
+            </span>
+
+            <i class="fa-solid fa-arrow-up-right-from-square external"></i>
+        </a>
+
+
+        <a
+            id="twitter"
+            class="social-btn"
+            href="#"
+        >
+            <i class="fa-brands fa-x-twitter"></i>
+
+            <span class="social-name">
+                X / TWITTER
+            </span>
+
+            <i class="fa-solid fa-arrow-up-right-from-square external"></i>
+        </a>
+
+
+        <a
+            id="threads"
+            class="social-btn"
+            href="#"
+        >
+            <i class="fa-brands fa-threads"></i>
+
+            <span class="social-name">
+                THREADS
+            </span>
+
+            <i class="fa-solid fa-arrow-up-right-from-square external"></i>
+        </a>
+
+    </div>
+
+</main>
+
+
+<!-- ================= MUSIC BUTTON ================= -->
+
+<button
+    id="musicBtn"
+    class="music-btn"
+    type="button"
+    aria-label="Music"
+>
+    <i
+        id="musicIcon"
+        class="fa-solid fa-music"
+    ></i>
+</button>
+
+
+<!-- =====================================================
+     WELCOME POPUP
+===================================================== -->
+
+<div
+    class="community-overlay"
+    id="communityOverlay"
+>
+
+    <div class="community-card">
+
+
+        <!-- CLOSE -->
+
+        <button
+            type="button"
+            class="community-close"
+            id="communityClose"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+
+        <!-- ================= WELCOME PHOTO ================= -->
+
+        <div class="community-profile">
+
+            <img
+                id="popupProfilePic"
+                src="https://files.catbox.moe/pcjr2u.jpg"
+                alt="EFX ASIF"
+            >
+
+        </div>
+
+
+        <!-- NAME + BADGE -->
+
+        <h2 class="popup-name">
+
+            <span id="popupName">
+                EFX ASIF
+            </span>
+
+            <svg
+                class="popup-verified"
+                viewBox="0 0 64 64"
+                aria-label="Verified"
+            >
+
+                <path
+                    fill="#3897e8"
+                    d="M32 1L39 6L47 5L52 12L60 16L58 25L63 32L58 39L60 48L52 52L47 59L39 58L32 63L25 58L17 59L12 52L4 48L6 39L1 32L6 25L4 16L12 12L17 5L25 6Z"
+                />
+
+                <path
+                    d="M17 32L27 42L48 20"
+                    fill="none"
+                    stroke="#fff"
+                    stroke-width="7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+
+            </svg>
+
+        </h2>
+
+
+        <!-- TEXT -->
+
+        <p class="community-text">
+
+            Facing issues with your projects?
+            Don't worry! Join our official
+            Telegram community. Whether you
+            need help, guidance, or just want
+            to connect, we are always here
+            to support you.
+
+        </p>
+
+
+        <p class="community-bangla">
+
+            যেকোনো প্রজেক্ট বানাতে গিয়ে কোনো
+            সমস্যায় পড়েছেন? চিন্তার কিছু নেই!
+            আমাদের Telegram community-তে join
+            করুন। এখানে যেকোনো সমস্যার সমাধান
+            এবং প্রয়োজনীয় গাইডলাইন পেয়ে যাবেন।
+
+        </p>
+
+
+        <!-- BUTTONS -->
+
+        <div class="community-actions">
+
+
+            <a
+                class="community-btn telegram"
+                href="https://t.me/copy_editor_asif9x"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <i class="fa-brands fa-telegram"></i>
+
+                TELEGRAM
+
+            </a>
+
+
+            <a
+                class="community-btn youtube"
+                id="popupYoutube"
+                href="#"
+            >
+
+                <i class="fa-brands fa-youtube"></i>
+
+                YOUTUBE
+
+            </a>
+
+        </div>
+
+
+        <!-- CONTINUE -->
+
+        <button
+            type="button"
+            class="continue-btn"
+            id="continueWebsite"
+        >
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+            &nbsp;
+
+            CONTINUE TO WEBSITE
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FIREBASE + MUSIC
+===================================================== -->
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc
+}
+from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+
+/* ================= FIREBASE ================= */
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyAo82PuA-8QB0JaYSANdUkQIsJlyhz3jkw",
+
+    authDomain:
+    "websitee-778d0.firebaseapp.com",
+
+    projectId:
+    "websitee-778d0",
+
+    storageBucket:
+    "websitee-778d0.firebasestorage.app",
+
+    messagingSenderId:
+    "613964829792",
+
+    appId:
+    "1:613964829792:web:e943b145c54364a1e15f05"
+
+};
+
+
+const app =
+initializeApp(firebaseConfig);
+
+
+const db =
+getFirestore(app);
+
+
+/* ================= DEFAULT DATA ================= */
+
+const defaults = {
+
+    fullname:
+    "EFX ASIF",
+
+    username:
+    "@efxasif",
+
+    profilePic:
+    "https://files.catbox.moe/pcjr2u.jpg",
+
+    youtube:
+    "#",
+
+    tiktok:
+    "#",
+
+    facebook:
+    "#",
+
+    instagram:
+    "#",
+
+    whatsapp:
+    "#",
+
+    discord:
+    "#",
+
+    telegram:
+    "https://t.me/copy_editor_asif9x",
+
+    twitter:
+    "#",
+
+    threads:
+    "#",
+
+    audioEnabled:
+    true,
+
+    audioLoop:
+    true,
+
+    audioVolume:
+    .35,
+
+    audioUrl:
+    ""
+
+};
+
+
+let music =
+null;
+
+let musicReady =
+false;
+
+
+/* ================= LOAD FIRESTORE ================= */
+
+async function loadData(){
+
+    let data = {
+        ...defaults
+    };
+
+
+    try{
+
+        const snap =
+        await getDoc(
+            doc(
+                db,
+                "site",
+                "config"
+            )
+        );
+
+
+        if(snap.exists()){
+
+            data = {
+                ...defaults,
+                ...snap.data()
+            };
+
+        }
+
+    }catch(error){
+
+        console.error(
+            "Firestore error:",
+            error
+        );
+
+    }
+
+
+    applyData(data);
+
+}
+
+
+/* ================= APPLY DATA ================= */
+
+function applyData(data){
+
+    const fullname =
+    data.fullname ||
+    "EFX ASIF";
+
+
+    const username =
+    data.username ||
+    "@efxasif";
+
+
+    document.getElementById(
+        "fullname"
+    ).textContent =
+    fullname;
+
+
+    document.getElementById(
+        "popupName"
+    ).textContent =
+    fullname;
+
+
+    document.getElementById(
+        "username"
+    ).textContent =
+    username;
+
+
+    if(data.profilePic){
+
+        document.getElementById(
+            "profilePic"
+        ).src =
+        data.profilePic;
+
+
+        document.getElementById(
+            "popupProfilePic"
+        ).src =
+        data.profilePic;
+
+    }
+
+
+    setLink(
+        "youtube",
+        data.youtube
+    );
+
+    setLink(
+        "tiktok",
+        data.tiktok
+    );
+
+    setLink(
+        "facebook",
+        data.facebook
+    );
+
+    setLink(
+        "instagram",
+        data.instagram
+    );
+
+    setLink(
+        "whatsapp",
+        data.whatsapp
+    );
+
+    setLink(
+        "discord",
+        data.discord
+    );
+
+    setLink(
+        "telegram",
+        data.telegram
+    );
+
+    setLink(
+        "twitter",
+        data.twitter
+    );
+
+    setLink(
+        "threads",
+        data.threads
+    );
+
+
+    /* POPUP YOUTUBE */
+
+    const popupYoutube =
+    document.getElementById(
+        "popupYoutube"
+    );
+
+
+    if(
+        data.youtube &&
+        data.youtube !== "#"
+    ){
+
+        popupYoutube.href =
+        data.youtube;
+
+        popupYoutube.target =
+        "_blank";
+
+        popupYoutube.rel =
+        "noopener noreferrer";
+
+    }
+
+
+    setupMusic(data);
+
+}
+
+
+/* ================= LINKS ================= */
+
+function setLink(
+    id,
+    url
+){
+
+    const el =
+    document.getElementById(id);
+
+
+    if(!el)
+    return;
+
+
+    if(
+        url &&
+        url !== "#"
+    ){
+
+        el.href =
+        url;
+
+        el.target =
+        "_blank";
+
+        el.rel =
+        "noopener noreferrer";
+
+    }
+
+}
+
+
+/* =====================================================
+   MUSIC SYSTEM
+===================================================== */
+
+function setupMusic(data){
+
+    const btn =
+    document.getElementById(
+        "musicBtn"
+    );
+
+
+    const icon =
+    document.getElementById(
+        "musicIcon"
+    );
+
+
+    /* NO AUDIO */
+
+    if(
+        !data.audioUrl ||
+        data.audioUrl.trim() === ""
+    ){
+
+        btn.style.display =
+        "none";
+
+        return;
+
+    }
+
+
+    /* CREATE AUDIO */
+
+    music =
+    new Audio(
+        data.audioUrl
+    );
+
+
+    music.preload =
+    "auto";
+
+
+    music.loop =
+    data.audioLoop !== false;
+
+
+    let volume =
+    Number(
+        data.audioVolume
+    );
+
+
+    if(isNaN(volume)){
+
+        volume =
+        .35;
+
+    }
+
+
+    music.volume =
+    Math.max(
+        0,
+        Math.min(
+            1,
+            volume
+        )
+    );
+
+
+    musicReady =
+    true;
+
+
+    btn.style.display =
+    "flex";
+
+
+    /* PLAY */
+
+    music.addEventListener(
+        "play",
+        function(){
+
+            btn.classList.add(
+                "playing"
+            );
+
+            icon.className =
+            "fa-solid fa-pause";
+
+        }
+    );
+
+
+    /* PAUSE */
+
+    music.addEventListener(
+        "pause",
+        function(){
+
+            btn.classList.remove(
+                "playing"
+            );
+
+            icon.className =
+            "fa-solid fa-music";
+
+        }
+    );
+
+
+    /* BUTTON */
+
+    btn.onclick =
+    async function(){
+
+        if(!musicReady)
+        return;
+
+
+        if(music.paused){
+
+            try{
+
+                await music.play();
+
+            }catch(error){
+
+                console.log(
+                    "Music error:",
+                    error
+                );
+
+            }
+
+        }else{
+
+            music.pause();
+
+        }
+
+    };
+
+
+    /*
+      Autoplay try.
+      Browser block করলে Continue button
+      থেকে music play হবে।
+    */
+
+    if(
+        data.audioEnabled === true
+    ){
+
+        setTimeout(
+            function(){
+
+                music
+                .play()
+                .catch(
+                    function(){
+
+                        console.log(
+                            "Autoplay waiting for user."
+                        );
+
+                    }
+                );
+
+            },
+            700
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   USER GESTURE MUSIC
+===================================================== */
+
+window.startMusic =
+async function(){
+
+    if(
+        !musicReady ||
+        !music
+    ){
+
+        return;
+
+    }
+
+
+    try{
+
+        await music.play();
+
+    }catch(error){
+
+        console.log(
+            "Music start error:",
+            error
+        );
+
+    }
+
+};
+
+
+loadData();
+
+</script>
+
+
+<!-- =====================================================
+     POPUP CONTROL
+===================================================== -->
+
+<script>
+
+const overlay =
+document.getElementById(
+    "communityOverlay"
+);
+
+
+const closeBtn =
+document.getElementById(
+    "communityClose"
+);
+
+
+const continueBtn =
+document.getElementById(
+    "continueWebsite"
+);
+
+
+/* ================= CLOSE POPUP ================= */
+
+async function closePopup(){
+
+    /*
+      User click করার কারণে
+      browser music play allow করবে।
+    */
+
+    if(
+        typeof window.startMusic ===
+        "function"
+    ){
+
+        await window.startMusic();
+
+    }
+
+
+    overlay.classList.add(
+        "hide"
+    );
+
+
+    setTimeout(
+        function(){
+
+            overlay.style.display =
+            "none";
+
+        },
+        520
+    );
+
+}
+
+
+/* ================= X BUTTON ================= */
+
+closeBtn.addEventListener(
+    "click",
+    closePopup
+);
+
+
+/* ================= CONTINUE ================= */
+
+continueBtn.addEventListener(
+    "click",
+    closePopup
+);
+
+
+/* ================= OUTSIDE ================= */
+
+overlay.addEventListener(
+    "click",
+    function(e){
+
+        if(
+            e.target === overlay
+        ){
+
+            closePopup();
+
+        }
+
+    }
+);
+
+
+/* ================= ESC ================= */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(
+            e.key === "Escape"
+        ){
+
+            closePopup();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
